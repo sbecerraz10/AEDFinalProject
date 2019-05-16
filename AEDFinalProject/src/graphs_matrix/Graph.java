@@ -1,76 +1,164 @@
 package graphs_matrix;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 public class Graph<V> {
 	
 	private Map<V, Integer> vertices;
 	
-	private int[][] adjacent;
+	private double[][] adjacent;
+	
+	private List<V> verticesLookup;
 	
 	private int numVertex;
 	
 	public Graph(int numVertices) {
 		super();
-		adjacent = new int[numVertices][numVertices];
+		adjacent = new double[numVertices][numVertices];
 		numVertex = 0;
 		vertices = new HashMap<>();
+		verticesLookup = new ArrayList<>();
 	}
 	
-	public void addEdge(V v1, V v2) {
+	public void addEdge(V v1, V v2, double distance) {
 		addVertex(v1);
 		addVertex(v2);
 		
 		int v1Index = vertices.get(v1);
 		int v2Index = vertices.get(v2);
-		adjacent[v1Index][v2Index] = 1;
+		if(distance != 0)adjacent[v1Index][v2Index] = distance;
 	}
 	
 	public void addVertex(V v) {
 		if(!vertices.containsKey(v)) {
 			vertices.put(v, numVertex);
+			verticesLookup.add(numVertex, v);
 			numVertex++;
 		}
 	}
 
 	
-//	Implementacion clase no generica
-//	private final int MAX_VERTEX;
-//	private final int MAX_EDGE;
-//	
-//	private int numEdge;
-//	private Node<V>[][] matrizAdjacent;
-//	
-//	public Graph(int numVertex) {
-//		MAX_VERTEX = numVertex;
-//		MAX_EDGE = numVertex*numVertex;
-//		
-//		this.numEdge = 0;
-//		
-//		matrizAdjacent = new Node<V>[MAX_VERTEX][MAX_VERTEX];
-//	}
-//	
-//	public int getMAX_VERTEX() {
-//		return MAX_VERTEX;
-//	}
-//	
-//	public int getMAX_EDGE() {
-//		return MAX_EDGE;
-//	}
-//	
-//	public void addEdge(int v1, int v2) throws ArrayIndexOutOfBoundsException, UnsupportedOperationException {
-//		
-//		if(v1 >= MAX_VERTEX || v2 >= MAX_VERTEX) {
-//			throw new ArrayIndexOutOfBoundsException("Vertices invalidos, fuera de rango");
-//		} else if(numEdge == MAX_EDGE) {
-//			throw new UnsupportedOperationException("No se puede añadir mas aristas");
-//		} else {
-//			matrizAdjacent[v1][v2] = 1;
-//		}
-//		
-//	}
-//	
+
+    public void bfs(V start) {
+        Queue<V> queue = new LinkedList<>();
+        boolean[] visited = new boolean[vertices.size()]; 
+
+        queue.add(start);
+        int index = vertices.get(start);
+        visited[index] = true;
+
+        while(!queue.isEmpty()) {
+            V v = queue.poll();
+            System.out.print(v + " ");
+
+            List<V> adjacentVertices = getAdjacentVertices(v);
+            for(V a : adjacentVertices) {
+                int adjInd = vertices.get(a);
+                if(!visited[adjInd]) {
+                    queue.add(a);
+                    visited[adjInd] = true;
+                }
+            }
+
+        }
+
+    }
+
+    public void dfs(V start) {
+        boolean[] visited = new boolean[vertices.size()];
+        dfs(start, visited);
+    }
+
+    private void dfs(V v, boolean[] visited) {
+        System.out.print(v + " ");
+        int index = vertices.get(v);
+        visited[index] = true;
+
+        List<V> adjacentVertices = getAdjacentVertices(v);
+        for(V a : adjacentVertices) {
+            int aIndex = vertices.get(a);
+            if(!visited[aIndex]) {
+                dfs(a, visited);
+            }
+        }
+    }
+
+    private List<V> getAdjacentVertices(V v) {
+        int index = vertices.get(v);
+        List<V> result = new ArrayList<>();
+        for(int i=0; i<adjacent[index].length; i++) {
+            if(adjacent[index][i] != 0 && adjacent[index][i] != Double.MAX_VALUE) {
+                result.add(verticesLookup.get(i));
+            }
+        }
+        return result;
+    }
 	
+    
+    
 	
+	static void floydWarshall(int[][] weights, int numVertices) {
+		 
+        double[][] dist = new double[numVertices][numVertices];
+        for (double[] row : dist)
+            Arrays.fill(row, Double.POSITIVE_INFINITY);
+ 
+        for (int[] w : weights)
+            dist[w[0] - 1][w[1] - 1] = w[2];
+ 
+        int[][] next = new int[numVertices][numVertices];
+        for (int i = 0; i < next.length; i++) {
+            for (int j = 0; j < next.length; j++)
+                if (i != j)
+                    next[i][j] = j + 1;
+        }
+ 
+        for (int k = 0; k < numVertices; k++)
+            for (int i = 0; i < numVertices; i++)
+                for (int j = 0; j < numVertices; j++)
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        next[i][j] = next[i][k];
+                    }
+ 
+        for (int i = 0; i < dist.length; i++) {
+			for (int j = 0; j < dist.length; j++) {
+				System.out.print(dist[i][j]);
+			}
+			System.out.println();
+		}
+        
+        for (int i = 0; i < next.length; i++) {
+			for (int j = 0; j < next.length; j++) {
+				System.out.print(next[i][j] + "  ");
+			}
+			System.out.println();
+		}
+        
+        printResult(dist, next);
+    }
+	
+	static void printResult(double[][] dist, int[][] next) {
+        System.out.println("pair     dist    path");
+        for (int i = 0; i < next.length; i++) {
+            for (int j = 0; j < next.length; j++) {
+                if (i != j) {
+                    int u = i + 1;
+                    int v = j + 1;
+                    String path = String.format("%d -> %d    %2d     %s", u, v,(int) dist[i][j], u);
+                    do {
+                        u = next[u - 1][v - 1];
+                        path += " -> " + u;
+                    } while (u != v);
+                    System.out.println(path);
+                }
+            }
+        }
+    }
 }

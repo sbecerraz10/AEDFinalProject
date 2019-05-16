@@ -20,6 +20,7 @@ public class Graph<V> {
 
 	public void addNode(Node<V> node) {
         this.nodes.add(node);
+        node.setIndex(nodes.size()-1);
         this.vertices++;
     }
  
@@ -36,6 +37,27 @@ public class Graph<V> {
     	
     	return this.allEdges;
     }
+    
+    public double [][] listToMatrix(){
+		double [][] matrix = new double[this.vertices][this.vertices];
+		for (int i = 0; i < nodes.size(); i++) {
+			Node<V> origin = nodes.get(i);
+			for (int j = 0; j < origin.getAdjacents().size(); j++) {
+				Edge<V> currentEdge = origin.getAdjacents().get(j);
+				Node<V> destination = currentEdge.getDestination();
+				matrix[origin.getIndex()][destination.getIndex()] = currentEdge.getDistance();
+			}
+		}
+    	
+    	return matrix;
+    	
+    }
+
+	public int getVertices() {
+		return vertices;
+	}
+
+	
     
 //    public void kruskalMST(){
 //        PriorityQueue<Edge> pq = new PriorityQueue<>(allEdges.size(), Comparator.comparingInt(o -> o.weight));

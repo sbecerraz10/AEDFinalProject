@@ -10,14 +10,24 @@ public class Node<V>{
     private boolean visited;
 	private Node<V> predecessor;
 	private double distance = Double.MAX_VALUE;
+	
+	private int index;
  
-    public Node(V city) {
+    public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public Node(V city) {
     	this.adjacents = new ArrayList<Edge<V>>();
         this.value = city;
     }
  
     public void addEdge(Edge<V> edge) {
-        adjacents.add(edge);
+        if(edge.getOrigin()==this)adjacents.add(edge);
     }
  
     public List<Edge<V>> getAdjacents() {

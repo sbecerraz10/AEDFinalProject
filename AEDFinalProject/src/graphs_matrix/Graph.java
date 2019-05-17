@@ -144,6 +144,12 @@ public class Graph<V> {
         printResult(dist, next);
     }
 	
+	/*
+	 * void printhPath(int i, int j)
+	 * if(i!=j) printhPath(next[i][j], i)
+	 *  array[] print(i)
+	 */
+	
 	static void printResult(double[][] dist, int[][] next) {
         System.out.println("pair     dist    path");
         for (int i = 0; i < next.length; i++) {

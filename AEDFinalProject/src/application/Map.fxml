@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="705.0" style="-fx-background-color: #243643;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MapController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-3.0" opacity="0.73" prefHeight="577.0" prefWidth="434.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="570.0" fitWidth="432.0" layoutX="1.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../additional/map.png" />
+               </image></ImageView>
+         </children>
+      </AnchorPane>
+      <Button layoutX="513.0" layoutY="73.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #9d9b9e;" text="Iniciar">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

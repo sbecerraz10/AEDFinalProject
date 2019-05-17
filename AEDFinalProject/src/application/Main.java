@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.fxml.FXMLLoader;
 
 
@@ -16,6 +17,8 @@ public class Main extends Application {
 			Parent root = (Parent) loader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Red-Colombiaria");
+			primaryStage.getIcons().add(new Image("/additional/tren.png"));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -45,7 +45,8 @@ public class Graph<V> {
 
 	
 
-    public void bfs(V start) {
+    public ArrayList<String> bfs(V start) {
+    	ArrayList<String> bf = new ArrayList<String>();
         Queue<V> queue = new LinkedList<>();
         boolean[] visited = new boolean[vertices.size()]; 
 
@@ -55,7 +56,8 @@ public class Graph<V> {
 
         while(!queue.isEmpty()) {
             V v = queue.poll();
-            System.out.print(v + " ");
+            bf.add(v + " ");
+            //System.out.print(v + " ");
 
             List<V> adjacentVertices = getAdjacentVertices(v);
             for(V a : adjacentVertices) {
@@ -66,7 +68,7 @@ public class Graph<V> {
                 }
             }
 
-        }
+        }return bf;
 
     }
 

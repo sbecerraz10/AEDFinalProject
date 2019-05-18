@@ -30,6 +30,7 @@ public class IndexController implements Initializable {
 			Scene scene = new Scene(root);
 			Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
+			stage.centerOnScreen();
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

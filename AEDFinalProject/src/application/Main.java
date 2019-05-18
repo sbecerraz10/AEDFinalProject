@@ -19,6 +19,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Red-Colombiaria");
 			primaryStage.getIcons().add(new Image("/additional/tren.png"));
+			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

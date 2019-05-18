@@ -18,12 +18,22 @@ public class Graph<V> {
 	
 	private int numVertex;
 	
+	private int[][] next;
+	
+	private ArrayList<Integer> shortestPath;
+		
 	public Graph(int numVertices) {
 		super();
 		adjacent = new double[numVertices][numVertices];
+		next = new int[numVertices][numVertices];
 		numVertex = 0;
 		vertices = new HashMap<>();
 		verticesLookup = new ArrayList<>();
+		shortestPath = new ArrayList<>();
+	}
+	
+	public void clearShortestPath() {
+		shortestPath.clear();
 	}
 	
 	public void addEdge(V v1, V v2, double distance) {
@@ -106,7 +116,7 @@ public class Graph<V> {
     
     
 	
-	static void floydWarshall(int[][] weights, int numVertices) {
+	void floydWarshall(int[][] weights, int numVertices) {
 		 
         double[][] dist = new double[numVertices][numVertices];
         for (double[] row : dist)
@@ -115,11 +125,11 @@ public class Graph<V> {
         for (int[] w : weights)
             dist[w[0] - 1][w[1] - 1] = w[2];
  
-        int[][] next = new int[numVertices][numVertices];
-        for (int i = 0; i < next.length; i++) {
-            for (int j = 0; j < next.length; j++)
+        int[][] nextAux = new int[numVertices][numVertices];
+        for (int i = 0; i < nextAux.length; i++) {
+            for (int j = 0; j < nextAux.length; j++)
                 if (i != j)
-                    next[i][j] = j + 1;
+                    nextAux[i][j] = j + 1;
         }
  
         for (int k = 0; k < numVertices; k++)
@@ -127,7 +137,7 @@ public class Graph<V> {
                 for (int j = 0; j < numVertices; j++)
                     if (dist[i][k] + dist[k][j] < dist[i][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];
-                        next[i][j] = next[i][k];
+                        nextAux[i][j] = nextAux[i][k];
                     }
  
         for (int i = 0; i < dist.length; i++) {
@@ -137,23 +147,25 @@ public class Graph<V> {
 			System.out.println();
 		}
         
-        for (int i = 0; i < next.length; i++) {
-			for (int j = 0; j < next.length; j++) {
-				System.out.print(next[i][j] + "  ");
+        for (int i = 0; i < nextAux.length; i++) {
+			for (int j = 0; j < nextAux.length; j++) {
+				System.out.print(nextAux[i][j] + "  ");
 			}
 			System.out.println();
 		}
         
-        printResult(dist, next);
+        next = nextAux;
+        printResult(dist, nextAux);
     }
 	
-	/*
-	 * void printhPath(int i, int j)
-	 * if(i!=j) printhPath(next[i][j], i)
-	 *  array[] print(i)
-	 */
+	void printhPath(int i, int j) {
+		if(i!=j) {
+			printhPath(next[i][j], i); 
+		}
+		shortestPath.add(i);
+	}
 	
-	static void printResult(double[][] dist, int[][] next) {
+	void printResult(double[][] dist, int[][] next) {
         System.out.println("pair     dist    path");
         for (int i = 0; i < next.length; i++) {
             for (int j = 0; j < next.length; j++) {

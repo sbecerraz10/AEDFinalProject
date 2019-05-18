@@ -5,6 +5,11 @@ import java.util.List;
 
 public class Node<V>{
 	
+	public final static int WHITE = 0;
+	public final static int BLACK = 2;
+	public final static int GRAY = 1;
+	
+	private int color;
 	private V value;
     private List<Edge<V>> adjacents;
     private boolean visited;
@@ -68,6 +73,14 @@ public class Node<V>{
 
 	public void setAdjacents(List<Edge<V>> adjacents) {
 		this.adjacents = adjacents;
+	}
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
 	}
 
 }

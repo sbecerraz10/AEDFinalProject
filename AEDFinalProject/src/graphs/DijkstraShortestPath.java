@@ -18,7 +18,7 @@ public class DijkstraShortestPath<V> {
             // Getting the minimum distance vertex from priority queue
 			Node<V> actualVertex = priorityQueue.poll();
  
-			for(Edge edge : actualVertex.getAdjacents()){
+			for(Edge<V> edge : actualVertex.getAdjacents()){
  
 				Node<V> v = edge.getDestination();
 				if(!v.isVisited())

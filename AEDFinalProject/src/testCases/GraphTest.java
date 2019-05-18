@@ -50,6 +50,54 @@ class GraphTest {
 		graph.addNode(aux2);
 	}
 	
+	/*
+	private void setUp3() {
+		setUp();
+		Node<Integer> na = new Node<Integer>(1);
+		Node<Integer> nb = new Node<Integer>(2);
+		Node<Integer> nc = new Node<Integer>(3);
+		Node<Integer> nd = new Node<Integer>(4);
+		Node<Integer> ne = new Node<Integer>(5);
+		Edge<Integer> edge = new Edge<Integer>(na,nb, 1);
+		Edge<Integer> edge1 = new Edge<Integer>(na,nc, 4);
+		Edge<Integer> edge2 = new Edge<Integer>(na,ne, 2);
+		Edge<Integer> edge3 = new Edge<Integer>(nb,na, 1);
+		Edge<Integer> edge4 = new Edge<Integer>(nb,nd, 3);
+		Edge<Integer> e5 = new Edge<Integer>(nb, ne, 3);
+		Edge<Integer> e6 = new Edge<Integer>(nc, na, 4);
+		Edge<Integer> e7 = new Edge<Integer>(nc, nd, 1);
+		Edge<Integer> e8 = new Edge<Integer>(nc, ne, 3);
+		Edge<Integer> e9 = new Edge<Integer>(nd, nb, 3);
+		Edge<Integer> e10 = new Edge<Integer>(nd, nc, 1);
+		Edge<Integer> e11 = new Edge<Integer>(nd, ne, 2);
+		Edge<Integer> e12 = new Edge<Integer>(ne, na, 2);
+		Edge<Integer> e13 = new Edge<Integer>(ne, nb, 3);
+		Edge<Integer> e14 = new Edge<Integer>(ne, nc, 3);
+		Edge<Integer> e15 = new Edge<Integer>(ne, nd, 2);
+		
+		na.addEdge(edge);
+		na.addEdge(edge1);
+		na.addEdge(edge2);
+		nb.addEdge(edge3);
+		nb.addEdge(edge4);
+		nb.addEdge(e5);
+		nc.addEdge(e6);
+		nc.addEdge(e7);
+		nc.addEdge(e8);
+		nd.addEdge(e9);
+		nd.addEdge(e10);
+		nd.addEdge(e11);
+		ne.addEdge(e12);
+		ne.addEdge(e13);
+		ne.addEdge(e14);
+		ne.addEdge(e15);
+		
+		graph.addNode(na);
+		graph.addNode(nb);
+		graph.addNode(nc);
+		graph.addNode(nd);
+	}
+	*/
 	
 	
 	@Test
@@ -84,5 +132,13 @@ class GraphTest {
 //		26| 0  2  0  0
 //		28| 1  6  0  0
 	}
+	
+	/*
+	@Test
+	void testPrim() {
+		setUp3();
+		graph.prim(graph.getNodes().get(0));
+	}
+	*/
 
 }

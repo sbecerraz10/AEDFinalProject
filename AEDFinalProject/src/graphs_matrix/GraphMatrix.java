@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-public class Graph<V> {
+public class GraphMatrix<V> {
 	
 	private Map<V, Integer> vertices;
 	
@@ -22,7 +22,7 @@ public class Graph<V> {
 	
 	private ArrayList<Integer> shortestPath;
 		
-	public Graph(int numVertices) {
+	public GraphMatrix(int numVertices) {
 		super();
 		adjacent = new double[numVertices][numVertices];
 		next = new int[numVertices][numVertices];

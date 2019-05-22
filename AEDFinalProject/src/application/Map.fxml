@@ -18,10 +18,13 @@
                </image></ImageView>
             <Label layoutX="199.0" layoutY="52.0" prefHeight="23.0" prefWidth="30.0">
                <tooltip>
-                  <Tooltip text="Santa Marta" />
+                  <Tooltip text="Santa Marta">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="santaMarta" fitHeight="24.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -30,22 +33,28 @@
             </Label>
             <Label layoutX="146.0" layoutY="215.0">
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="medellin" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
                   </ImageView>
                </graphic>
                <tooltip>
-                  <Tooltip text="Medellin" />
+                  <Tooltip text="Medellin">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></Tooltip>
                </tooltip>
             </Label>
             <Label layoutX="105.0" layoutY="336.0" prefHeight="23.0" prefWidth="19.0">
                <tooltip>
-                  <Tooltip text="Cali" />
+                  <Tooltip text="Cali">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cali" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -61,7 +70,7 @@
                   </Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="14.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="tolima" fitHeight="14.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -70,10 +79,13 @@
             </Label>
             <Label layoutX="66.0" layoutY="419.0">
                <tooltip>
-                  <Tooltip text="Pasto" />
+                  <Tooltip text="Pasto">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="pasto" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -82,10 +94,13 @@
             </Label>
             <Label layoutX="194.0" layoutY="286.0">
                <tooltip>
-                  <Tooltip text="Bogota" />
+                  <Tooltip text="Bogota">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bogota" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -94,10 +109,13 @@
             </Label>
             <Label layoutX="251.0" layoutY="168.0">
                <tooltip>
-                  <Tooltip text="Cucuta" />
+                  <Tooltip text="Cucuta">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cucuta" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -106,10 +124,13 @@
             </Label>
             <Label layoutX="224.0" layoutY="225.0">
                <tooltip>
-                  <Tooltip text="Bucaramanga" />
+                  <Tooltip text="Bucaramanga">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bucaramanga" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -118,10 +139,13 @@
             </Label>
             <Label layoutX="170.0" layoutY="64.0" prefHeight="23.0" prefWidth="30.0">
                <tooltip>
-                  <Tooltip text="Barranquilla" />
+                  <Tooltip text="Barranquilla">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="barranquilla" fitHeight="24.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -130,10 +154,13 @@
             </Label>
             <Label layoutX="151.0" layoutY="87.0" prefHeight="23.0" prefWidth="30.0">
                <tooltip>
-                  <Tooltip text="Cartagena" />
+                  <Tooltip text="Cartagena">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cartagena" fitHeight="24.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -142,10 +169,13 @@
             </Label>
             <Label layoutX="149.0" layoutY="366.0">
                <tooltip>
-                  <Tooltip text="Huila" />
+                  <Tooltip text="Huila">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="14.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="huila" fitHeight="14.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -154,10 +184,13 @@
             </Label>
             <Label layoutX="244.0" layoutY="262.0">
                <tooltip>
-                  <Tooltip text="Tunja" />
+                  <Tooltip text="Tunja">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="14.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="tunja" fitHeight="14.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -166,10 +199,13 @@
             </Label>
             <Label layoutX="283.0" layoutY="276.0">
                <tooltip>
-                  <Tooltip text="Yopal" />
+                  <Tooltip text="Yopal">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="yopal" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../additional/ciudades.png" />
                      </image>
@@ -183,5 +219,6 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
+      <Button layoutX="570.0" layoutY="144.0" mnemonicParsing="false" onAction="#newConnection" text="Crear conexion" />
    </children>
 </AnchorPane>

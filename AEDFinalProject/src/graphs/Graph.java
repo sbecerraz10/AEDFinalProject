@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Graph<V> {
+public class Graph<V> implements IGraph<V> {
 	
 	private List<Node<V>> nodes;
 	
@@ -57,7 +57,7 @@ public class Graph<V> {
     	
     }
     
-    void floydWarshall(int numVertices) {
+    public void floydWarshall(int numVertices) {
     	double[][] weights = listToMatrix();
         double[][] dist = new double[numVertices][numVertices];
         for (double[] row : dist)
@@ -98,7 +98,7 @@ public class Graph<V> {
         printResult(dist, next);
     }
     
-    void printResult(double[][] dist, int[][] next) {
+    public void printResult(double[][] dist, int[][] next) {
         System.out.println("pair     dist    path");
         for (int i = 0; i < next.length; i++) {
             for (int j = 0; j < next.length; j++) {

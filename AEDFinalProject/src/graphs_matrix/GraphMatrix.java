@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-public class GraphMatrix<V> {
+public class GraphMatrix<V> implements IGraphMatrix<V> {
 	
 	private Map<V, Integer> vertices;
 	
@@ -116,7 +116,7 @@ public class GraphMatrix<V> {
     
     
 	
-	void floydWarshall(int[][] weights, int numVertices) {
+	public void floydWarshall(int[][] weights, int numVertices) {
 		 
         double[][] dist = new double[numVertices][numVertices];
         for (double[] row : dist)
@@ -158,14 +158,14 @@ public class GraphMatrix<V> {
         printResult(dist, nextAux);
     }
 	
-	void printhPath(int i, int j) {
+	public void printhPath(int i, int j) {
 		if(i!=j) {
 			printhPath(next[i][j], i); 
 		}
 		shortestPath.add(i);
 	}
 	
-	void printResult(double[][] dist, int[][] next) {
+	public void printResult(double[][] dist, int[][] next) {
         System.out.println("pair     dist    path");
         for (int i = 0; i < next.length; i++) {
             for (int j = 0; j < next.length; j++) {

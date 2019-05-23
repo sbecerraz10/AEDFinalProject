@@ -5,14 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MapController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConnectionController">
    <children>
       <ChoiceBox fx:id="from" layoutX="104.0" layoutY="39.0" prefWidth="150.0" />
       <Label layoutX="37.0" layoutY="43.0" text="From" />
       <Label layoutX="37.0" layoutY="103.0" text="To" />
       <ChoiceBox fx:id="to" layoutX="104.0" layoutY="99.0" prefWidth="150.0" />
       <Button layoutX="65.0" layoutY="140.0" mnemonicParsing="false" onAction="#accept" text="Aceptar" />
-      <Button layoutX="153.0" layoutY="140.0" mnemonicParsing="false" onAction="#cancel" text="Cancelar" />
+      <Button fx:id="btCancelar" layoutX="153.0" layoutY="140.0" mnemonicParsing="false" onAction="#cancel" text="Cancelar" />
    </children>
 </AnchorPane>

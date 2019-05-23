@@ -1,27 +1,53 @@
 package model;
 
+import java.util.ArrayList;
+
 import graphs.Graph;
 import graphs_matrix.GraphMatrix;
 
 public class TrainStationsNetwork {
 	
-	private Graph<TrainStation> network1;
+	private Graph<TrainStation> network;
 	
 	private GraphMatrix<TrainStation> matrixNetwork;
 
+	private ArrayList<TrainStation> listStation;
+	
 	public TrainStationsNetwork() {
 		super();
-		network1 = new Graph<TrainStation>();
-		matrixNetwork = new GraphMatrix<TrainStation>(0);
-		// TODO Auto-generated constructor stub
+		network = new Graph<TrainStation>();
+		matrixNetwork = new GraphMatrix<TrainStation>(18);
+		listStation = new ArrayList<>();
+		loadStation();
+	}
+	
+	private void loadStation() {
+		listStation.add(new TrainStation("Medellin"));
+		listStation.add(new TrainStation("SantaMarta"));
+		listStation.add(new TrainStation("Cali"));
+		listStation.add(new TrainStation("Tolima"));
+		listStation.add(new TrainStation("Pasto"));
+		listStation.add(new TrainStation("Bogota"));
+		listStation.add(new TrainStation("Cucuta"));
+		listStation.add(new TrainStation("Bucaramanga"));
+		listStation.add(new TrainStation("Barranquilla"));
+		listStation.add(new TrainStation("Cartagena"));
+		listStation.add(new TrainStation("Huila"));
+		listStation.add(new TrainStation("Tunja"));
+		listStation.add(new TrainStation("Yopal"));
+		listStation.add(new TrainStation("Quibdo"));
+		listStation.add(new TrainStation("Arauca"));
+		listStation.add(new TrainStation("Manizales"));
+		listStation.add(new TrainStation("Guaviare"));
+		listStation.add(new TrainStation("Villavicencio"));
 	}
 
-	public Graph<TrainStation> getNetwork1() {
-		return network1;
+	public Graph<TrainStation> getNetwork() {
+		return network;
 	}
 
-	public void setNetwork1(Graph<TrainStation> network1) {
-		this.network1 = network1;
+	public void setNetwork1(Graph<TrainStation> network) {
+		this.network = network;
 	}
 
 	public GraphMatrix<TrainStation> getMatrixNetwork() {
@@ -32,9 +58,12 @@ public class TrainStationsNetwork {
 		this.matrixNetwork = matrixNetwork;
 	}
 	
+	public ArrayList<TrainStation> getListStation() {
+		return listStation;
+	}
 	
+	public void setListStation(ArrayList<TrainStation> listStation) {
+		this.listStation = listStation;
+	}
 	
-	
-	
-
 }

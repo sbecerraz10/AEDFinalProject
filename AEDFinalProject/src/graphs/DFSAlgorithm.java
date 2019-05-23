@@ -11,9 +11,9 @@ public class DFSAlgorithm<V> {
 	        this.graph = graph;
 	    }
 	 
-	    private Node<V> getNode(V value) {
-	        List<Node<V>> nodes = graph.getNodes();
-	        for (Node<V> node : nodes) {
+	    private Nodo<V> getNode(V value) {
+	        List<Nodo<V>> nodes = graph.getNodes();
+	        for (Nodo<V> node : nodes) {
 	            if (node.getValue().equals(value)) {
 	                return node;
 	            }
@@ -22,8 +22,8 @@ public class DFSAlgorithm<V> {
 	    }
 	 
 	    public boolean hasPathDfs(V source, V destination) {
-	        Node<V> start = getNode(source);
-	        Node<V> end = getNode(destination);
+	        Nodo<V> start = getNode(source);
+	        Nodo<V> end = getNode(destination);
 	        if (start != null && end != null) {
 	            return hasPathDfs(start, end, new HashSet<V>());
 	        } else {
@@ -31,7 +31,7 @@ public class DFSAlgorithm<V> {
 	        }
 	    }
 	 
-	    private boolean hasPathDfs(Node<V> source, Node<V> destination, HashSet<V> visited) {
+	    private boolean hasPathDfs(Nodo<V> source, Nodo<V> destination, HashSet<V> visited) {
 	        if (visited.contains(source.getValue())) {
 	            return false;
 	        }

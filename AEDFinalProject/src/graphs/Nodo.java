@@ -3,7 +3,7 @@ package graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node<V>{
+public class Nodo<V>{
 	
 	public final static int WHITE = 0;
 	public final static int BLACK = 2;
@@ -13,7 +13,7 @@ public class Node<V>{
 	private V value;
     private List<Edge<V>> adjacents;
     private boolean visited;
-	private Node<V> predecessor;
+	private Nodo<V> predecessor;
 	private double distance = Double.MAX_VALUE;
 	
 	private int index;
@@ -26,7 +26,7 @@ public class Node<V>{
 		this.index = index;
 	}
 
-	public Node(V city) {
+	public Nodo(V city) {
     	this.adjacents = new ArrayList<Edge<V>>();
         this.value = city;
     }
@@ -51,11 +51,11 @@ public class Node<V>{
 		this.visited = visited;
 	}
 
-	public Node<V> getPredecessor() {
+	public Nodo<V> getPredecessor() {
 		return predecessor;
 	}
 
-	public void setPredecessor(Node<V> predecessor) {
+	public void setPredecessor(Nodo<V> predecessor) {
 		this.predecessor = predecessor;
 	}
 

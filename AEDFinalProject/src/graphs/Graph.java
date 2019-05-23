@@ -9,7 +9,7 @@ import java.util.Queue;
 
 public class Graph<V> implements IGraph<V> {
 	
-	private List<Node<V>> nodes;
+	private List<Nodo<V>> nodes;
 	
 	private int vertices;
 	
@@ -17,18 +17,18 @@ public class Graph<V> implements IGraph<V> {
 	
     public Graph() {
 		super();
-		this.nodes = new ArrayList<Node<V>>();
+		this.nodes = new ArrayList<Nodo<V>>();
 		this.allEdges = new ArrayList<Edge<V>>();
 		this.vertices = nodes.size();
 	}
 
-	public void addNode(Node<V> node) {
+	public void addNode(Nodo<V> node) {
         this.nodes.add(node);
         node.setIndex(nodes.size()-1);
         this.vertices++;
     }
  
-    public List<Node<V>> getNodes() {
+    public List<Nodo<V>> getNodes() {
         return nodes;
     }
     
@@ -45,10 +45,10 @@ public class Graph<V> implements IGraph<V> {
     public double [][] listToMatrix(){
 		double [][] matrix = new double[this.vertices][this.vertices];
 		for (int i = 0; i < nodes.size(); i++) {
-			Node<V> origin = nodes.get(i);
+			Nodo<V> origin = nodes.get(i);
 			for (int j = 0; j < origin.getAdjacents().size(); j++) {
 				Edge<V> currentEdge = origin.getAdjacents().get(j);
-				Node<V> destination = currentEdge.getDestination();
+				Nodo<V> destination = currentEdge.getDestination();
 				matrix[origin.getIndex()][destination.getIndex()] = currentEdge.getDistance();
 			}
 		}
@@ -120,70 +120,70 @@ public class Graph<V> implements IGraph<V> {
 		return vertices;
 	}
 
-	public void prim(Node<V> r) {
-		for(Node<V> c: this.getNodes()) {
+	public void prim(Nodo<V> r) {
+		for(Nodo<V> c: this.getNodes()) {
 			c.setDistance(1000000);
-			c.setColor(Node.WHITE);
+			c.setColor(Nodo.WHITE);
 		}
 		
 		r.setDistance(0);
 		r.setPredecessor(null);
 		
-		Queue<Node<V>> pq = new PriorityQueue<Node<V>>();
+		Queue<Nodo<V>> pq = new PriorityQueue<Nodo<V>>();
 		pq.offer(r);
 		
 		while(!pq.isEmpty()) {
-			Node<V> u = pq.poll();
+			Nodo<V> u = pq.poll();
 			
 			for(int i = 0; i < nodes.size(); i++) {
 				
 				for(int j = 0; j < nodes.get(i).getAdjacents().size(); j++) {
 					Edge<V> e = nodes.get(i).getAdjacents().get(i);
-					Node<V> v = e.getDestination();
+					Nodo<V> v = e.getDestination();
 					
-					if(v.getColor() == Node.WHITE && (e.getDistance() < v.getDistance())) {
+					if(v.getColor() == Nodo.WHITE && (e.getDistance() < v.getDistance())) {
 						v.setDistance(e.getDistance());
 						pq.offer(v);
 						v.setPredecessor(u);
 					}
 					
-					u.setColor(Node.BLACK);
+					u.setColor(Nodo.BLACK);
 				}
 				
 			}
 		}
 	}
 	
-	public void bfs(Node<V> node) throws IllegalArgumentException {
+	public void bfs(Nodo<V> node) throws IllegalArgumentException {
 		if(!nodes.contains(node)) {
 			throw new IllegalArgumentException("Node not found");
 		} else {
-			for(Node<V> n: getNodes()) {
+			for(Nodo<V> n: getNodes()) {
 				if(!n.equals(node)) {
-					n.setColor(Node.WHITE);
+					n.setColor(Nodo.WHITE);
 					n.setDistance(1000000000);
 					n.setPredecessor(null);
 				}
 			}
 			
-			node.setColor(Node.GRAY);
+			node.setColor(Nodo.GRAY);
 			node.setDistance(0);
 			node.setPredecessor(null);
 			
-			Queue<Node<V>> lq = new LinkedList<>();
+			Queue<Nodo<V>> lq = new LinkedList<>();
 			lq.offer(node);
 			
 			while(!lq.isEmpty()) {
-				Node<V> au = lq.poll();
+				Nodo<V> au = lq.poll();
 				
 				for(int i = 0; i < nodes.size(); i++) {
 					
 					for(int j = 0; j < nodes.get(i).getAdjacents().size(); j++) {
 						Edge<V> e = nodes.get(i).getAdjacents().get(i);
-						Node<V> v = e.getDestination();
+						Nodo<V> v = e.getDestination();
 						
-						if(v.getColor() == Node.WHITE) {
-							v.setColor(Node.GRAY);
+						if(v.getColor() == Nodo.WHITE) {
+							v.setColor(Nodo.GRAY);
 							v.setDistance(au.getDistance()+1);
 							v.setPredecessor(au);
 							lq.offer(v);
@@ -191,7 +191,7 @@ public class Graph<V> implements IGraph<V> {
 					}
 					
 				}
-				au.setColor(Node.BLACK);
+				au.setColor(Nodo.BLACK);
 			}
 		}
 	}

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import graphs.Edge;
 import graphs.Graph;
-import graphs.Node;
+import graphs.Nodo;
 
 class GraphTest {
 	
@@ -18,20 +18,20 @@ class GraphTest {
 	}
 	private void setUp1() {
 		setUp();		
-		graph.addNode(new Node<Integer>(10) );
-		graph.addNode(new Node<Integer>(18) );
-		graph.addNode(new Node<Integer>(26) );
-		graph.addNode(new Node<Integer>(28) );
+		graph.addNode(new Nodo<Integer>(10) );
+		graph.addNode(new Nodo<Integer>(18) );
+		graph.addNode(new Nodo<Integer>(26) );
+		graph.addNode(new Nodo<Integer>(28) );
 		
 		
 	}
 	
 	private void setUp2() {
 		setUp();
-		Node<Integer> node = new Node<Integer>(10);
-		Node<Integer> aux = new Node<Integer>(18);
-		Node<Integer> aux1 = new Node<Integer>(26);
-		Node<Integer> aux2 = new Node<Integer>(28);
+		Nodo<Integer> node = new Nodo<Integer>(10);
+		Nodo<Integer> aux = new Nodo<Integer>(18);
+		Nodo<Integer> aux1 = new Nodo<Integer>(26);
+		Nodo<Integer> aux2 = new Nodo<Integer>(28);
 		Edge<Integer> edge = new Edge<Integer>(node,aux, 4);
 		Edge<Integer> edge1 = new Edge<Integer>(aux,aux1, 7);
 		Edge<Integer> edge2 = new Edge<Integer>(aux1,aux, 2);

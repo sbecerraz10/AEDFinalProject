@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface IGraph<V> {
 
-	public void addNode(Node<V> node);
+	public void addNode(Nodo<V> node);
 	
-	public List<Node<V>> getNodes();
+	public List<Nodo<V>> getNodes();
 	
 	public ArrayList<Edge<V>> giveAllEdges();
 	
@@ -19,8 +19,8 @@ public interface IGraph<V> {
 	
 	public int getVertices();
 	
-	public void prim(Node<V> r);
+	public void prim(Nodo<V> r);
 	
-	public void bfs(Node<V> node) throws IllegalArgumentException;
+	public void bfs(Nodo<V> node) throws IllegalArgumentException;
 	
 }

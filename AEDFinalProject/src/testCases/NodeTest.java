@@ -5,24 +5,24 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import graphs.Edge;
-import graphs.Node;
+import graphs.Nodo;
 
 class NodeTest {
 	
 	
-	private Node<Integer> node;
-	private Node<Integer> aux;
-	private Node<Integer> aux1;
-	private Node<Integer> aux2;
+	private Nodo<Integer> node;
+	private Nodo<Integer> aux;
+	private Nodo<Integer> aux1;
+	private Nodo<Integer> aux2;
 	
 	private void setUp() {
-		this.node = new Node<Integer>(10);
+		this.node = new Nodo<Integer>(10);
 	}
 	
 	private void setUp1() {
-		aux = new Node<Integer>(18);
-		aux1 = new Node<Integer>(26);
-		aux2 = new Node<Integer>(28);
+		aux = new Nodo<Integer>(18);
+		aux1 = new Nodo<Integer>(26);
+		aux2 = new Nodo<Integer>(28);
 		Edge<Integer> edge = new Edge<Integer>(node,aux, 4);
 		Edge<Integer> edge1 = new Edge<Integer>(aux,aux1, 7);
 		Edge<Integer> edge2 = new Edge<Integer>(aux1,aux, 2);

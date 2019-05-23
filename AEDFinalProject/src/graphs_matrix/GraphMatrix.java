@@ -30,8 +30,46 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 		vertices = new HashMap<>();
 		verticesLookup = new ArrayList<>();
 		shortestPath = new ArrayList<>();
+		
+		for(int i = 0; i < adjacent.length; i++) {
+			for(int j = 0; j < adjacent.length; j++) {
+				adjacent[i][j] = 0;
+			}
+		}
 	}
 	
+	public Map<V, Integer> getVertices() {
+		return vertices;
+	}
+
+	public void setVertices(Map<V, Integer> vertices) {
+		this.vertices = vertices;
+	}
+
+	public double[][] getAdjacent() {
+		return adjacent;
+	}
+
+	public void setAdjacent(double[][] adjacent) {
+		this.adjacent = adjacent;
+	}
+
+	public List<V> getVerticesLookup() {
+		return verticesLookup;
+	}
+
+	public void setVerticesLookup(List<V> verticesLookup) {
+		this.verticesLookup = verticesLookup;
+	}
+
+	public int getNumVertex() {
+		return numVertex;
+	}
+
+	public void setNumVertex(int numVertex) {
+		this.numVertex = numVertex;
+	}
+
 	public void clearShortestPath() {
 		shortestPath.clear();
 	}
@@ -40,9 +78,11 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 		addVertex(v1);
 		addVertex(v2);
 		
+		System.out.println(vertices.get(v1) + " " + vertices.get(v2));
 		int v1Index = vertices.get(v1);
 		int v2Index = vertices.get(v2);
-		if(distance != 0)adjacent[v1Index][v2Index] = distance;
+		if(distance != 0)
+			adjacent[v1Index][v2Index] = distance;
 	}
 	
 	public void addVertex(V v) {

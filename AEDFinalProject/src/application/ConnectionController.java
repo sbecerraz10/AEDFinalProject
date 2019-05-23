@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import graphs.Edge;
+import graphs.Nodo;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import model.TrainStation;
 
 public class ConnectionController implements Initializable {
@@ -27,37 +30,50 @@ public class ConnectionController implements Initializable {
 	private ChoiceBox<String> to;
 	
 	@FXML
+	private TextField price;
+	
+	@FXML
 	private Button btCancelar;
 	
 	@FXML
 	void accept(ActionEvent event) {
 		Alert alert = new Alert(AlertType.ERROR);
-		if(!from.getSelectionModel().isEmpty() && !to.getSelectionModel().isEmpty()) {
+		alert.setHeaderText(null);
+		alert.setTitle("Peligro");
+		
+		if(!from.getSelectionModel().isEmpty() && !to.getSelectionModel().isEmpty() && !price.getText().isEmpty()) {
 			int indice = from.getSelectionModel().getSelectedIndex();
 			int indice1 = to.getSelectionModel().getSelectedIndex();
-
-			if(indice == indice1) {
-				alert.setTitle("Peligro");
-				alert.setHeaderText(null);
-				alert.setContentText("Los puntos de salida deben de ser diferentes a los de entrada. Elige ciudades diferentes.");
+			double auxPrice = 0.0;
+			try {
+				auxPrice = Double.parseDouble(price.getText());
+			
+				if(indice == indice1) {
+					alert.setContentText("Los puntos de salida deben de ser diferentes a los de entrada. Elige ciudades diferentes.");
+					alert.show();
+				
+				} else {
+					TrainStation t1 = Main.getTrainNetwork().getListStation().get(indice);
+					TrainStation t2 = Main.getTrainNetwork().getListStation().get(indice1);
+					Main.getTrainNetwork().getMatrixNetwork().addEdge(t1, t2, auxPrice);
+					Nodo<TrainStation> n = new Nodo<TrainStation>(t1);
+					Nodo<TrainStation> n1 = new Nodo<TrainStation>(t2);
+					int p = Main.getTrainNetwork().getNetwork().getNodes().size();
+					Main.getTrainNetwork().getNetwork().addNode(n);
+					Main.getTrainNetwork().getNetwork().addNode(n1);
+					Edge<TrainStation> e = new Edge<TrainStation>(n, n1, auxPrice);
+					Main.getTrainNetwork().getNetwork().getNodes().get(p).addEdge(e);
+				
+					toReturn();
+				} 
+				
+			} catch (NumberFormatException e) {
+				alert.setContentText("El precio debe de ser un valor numerico");
 				alert.show();
-				
-			} else {
-				TrainStation t1 = Main.getTrainNetwork().getListStation().get(indice);
-				TrainStation t2 = Main.getTrainNetwork().getListStation().get(indice1);
-				Main.getTrainNetwork().getMatrixNetwork().addEdge(t1, t2, 10);
-//				Nodo<TrainStation> n = new Nodo<TrainStation>(Main.getTrainNetwork().getListStation().get(indice1));					
-//				Main.getTrainNetwork().getNetwork().addNode(n);	
-//				Main.getTrainNetwork().getNetwork().addNode(n);
-//				Main.getTrainNetwork().getNetwork().getNodes().get(0).addEdge(edge);
-				
-				toReturn();
 			}
 			
 		} else {
-			alert.setTitle("Peligro");
-			alert.setHeaderText(null);
-			alert.setContentText("Por favor seleccione el inicio y el final de la conexion que quieres hacer");
+			alert.setContentText("Por favor no deje campos vacios");
 			alert.show();
 		}
 		

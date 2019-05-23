@@ -299,6 +299,14 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="570.0" layoutY="144.0" mnemonicParsing="false" onAction="#newConnection" text="Crear conexion" />
+      <Button layoutX="545.0" layoutY="145.0" mnemonicParsing="false" onAction="#newConnection" style="-fx-background-color: #9d9b9e;" text="Crear conexion">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font></Button>
+      <Button layoutX="576.0" layoutY="218.0" mnemonicParsing="false" style="-fx-background-color: #9d9b9e;" text="Precios">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

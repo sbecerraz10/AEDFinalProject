@@ -14,6 +14,7 @@ public class Main extends Application {
 	private static TrainStationsNetwork trainNetwork;
 	
 	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {

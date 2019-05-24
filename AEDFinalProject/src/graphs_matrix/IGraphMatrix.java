@@ -10,14 +10,13 @@ public interface IGraphMatrix<V> {
 	
 	public void addVertex(V v);
 	
-	public ArrayList<String> bfs(V start);
+	public ArrayList<V> bfs(V start);
 	
-	public  void dfs(V start);
+	public  ArrayList<V> dfs(V start);
 	
-	public void floydWarshall(int[][] weights, int numVertices);
+	public double[][] floydWarshall(double matrix [][]);
 	
 	public void printhPath(int i, int j);
 	
-	public void printResult(double[][] dist, int[][] next);
 	
 }

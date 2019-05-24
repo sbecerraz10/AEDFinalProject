@@ -1,7 +1,6 @@
 package graphs_matrix;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,9 +32,15 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 		
 		for(int i = 0; i < adjacent.length; i++) {
 			for(int j = 0; j < adjacent.length; j++) {
-				adjacent[i][j] = 0;
+				if(i==j) {
+					adjacent[i][j] = 0;
+				}else if(i!=j) {
+					adjacent[i][j] = Double.POSITIVE_INFINITY;
+					adjacent[j][i] = Double.POSITIVE_INFINITY;
+				} 
 			}
 		}
+		
 	}
 	
 	public Map<V, Integer> getVertices() {
@@ -87,6 +92,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 	
 	public void addVertex(V v) {
 		if(!vertices.containsKey(v)) {
+			System.out.println("Vertice numero: " + numVertex);
 			vertices.put(v, numVertex);
 			verticesLookup.add(numVertex, v);
 			numVertex++;
@@ -95,8 +101,8 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 
 	
 
-    public ArrayList<String> bfs(V start) {
-    	ArrayList<String> bf = new ArrayList<String>();
+    public ArrayList<V> bfs(V start) {
+    	ArrayList<V> bf = new ArrayList<V>();
         Queue<V> queue = new LinkedList<>();
         boolean[] visited = new boolean[vertices.size()]; 
 
@@ -106,7 +112,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 
         while(!queue.isEmpty()) {
             V v = queue.poll();
-            bf.add(v + " ");
+            bf.add(v);
             //System.out.print(v + " ");
 
             List<V> adjacentVertices = getAdjacentVertices(v);
@@ -122,14 +128,16 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 
     }
 
-    public void dfs(V start) {
+    public ArrayList<V> dfs(V start) {
+    	ArrayList<V> d = new ArrayList<V>();
         boolean[] visited = new boolean[vertices.size()];
-        dfs(start, visited);
-    
+        dfs(start, visited,d);
+        return d;
     }
 
-    private void dfs(V v, boolean[] visited) {
-        System.out.print(v + " ");
+    private void dfs(V v, boolean[] visited, ArrayList<V> d) {
+        //System.out.print(v + " ");
+    	d.add(v);
         int index = vertices.get(v);
         visited[index] = true;
 
@@ -137,7 +145,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
         for(V a : adjacentVertices) {
             int aIndex = vertices.get(a);
             if(!visited[aIndex]) {
-                dfs(a, visited);
+                dfs(a, visited,d);
             }
         }
     }
@@ -146,7 +154,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
         int index = vertices.get(v);
         List<V> result = new ArrayList<>();
         for(int i=0; i<adjacent[index].length; i++) {
-            if(adjacent[index][i] != 0 && adjacent[index][i] != Double.MAX_VALUE) {
+            if(adjacent[index][i] != 0 && adjacent[index][i] != Double.POSITIVE_INFINITY) {
                 result.add(verticesLookup.get(i));
             }
         }
@@ -155,48 +163,49 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 	
     
     
-	
-	public void floydWarshall(int[][] weights, int numVertices) {
-		 
-        double[][] dist = new double[numVertices][numVertices];
-        for (double[] row : dist)
-            Arrays.fill(row, Double.POSITIVE_INFINITY);
- 
-        for (int[] w : weights)
-            dist[w[0] - 1][w[1] - 1] = w[2];
- 
-        int[][] nextAux = new int[numVertices][numVertices];
-        for (int i = 0; i < nextAux.length; i++) {
-            for (int j = 0; j < nextAux.length; j++)
-                if (i != j)
-                    nextAux[i][j] = j + 1;
-        }
- 
-        for (int k = 0; k < numVertices; k++)
-            for (int i = 0; i < numVertices; i++)
-                for (int j = 0; j < numVertices; j++)
-                    if (dist[i][k] + dist[k][j] < dist[i][j]) {
-                        dist[i][j] = dist[i][k] + dist[k][j];
-                        nextAux[i][j] = nextAux[i][k];
-                    }
- 
-        for (int i = 0; i < dist.length; i++) {
-			for (int j = 0; j < dist.length; j++) {
-				System.out.print(dist[i][j]);
-			}
-			System.out.println();
-		}
+    public double[][] floydWarshall(double graph[][]) 
+    { 
+    	double dist[][] = new double[graph.length][graph.length]; 
+        int i, j, k; 
+  
         
-        for (int i = 0; i < nextAux.length; i++) {
-			for (int j = 0; j < nextAux.length; j++) {
-				System.out.print(nextAux[i][j] + "  ");
-			}
-			System.out.println();
-		}
+        for (i = 0; i < graph.length; i++) 
+            for (j = 0; j < graph.length; j++) 
+                dist[i][j] = graph[i][j]; 
+  
         
-        next = nextAux;
-        printResult(dist, nextAux);
+        for (k = 0; k < graph.length; k++) 
+        { 
+            for (i = 0; i < graph.length; i++) 
+            { 
+                for (j = 0; j < graph.length; j++) 
+                { 
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) 
+                        dist[i][j] = dist[i][k] + dist[k][j]; 
+                } 
+            } 
+        } 
+        
+        printSolution(dist); 
+        return dist;
+        
+    } 
+  
+   public void printSolution(double dist[][]) 
+    { 
+        for (int i=0; i<dist.length; ++i) 
+        { 
+            for (int j=0; j<dist.length; ++j) 
+            { 
+                if (dist[i][j]==10000000) 
+                    System.out.print(-1 + "  "); 
+                else
+                    System.out.print(dist[i][j]+"  "); 
+            } 
+            System.out.println(); 
+        } 
     }
+	
 	
 	public void printhPath(int i, int j) {
 		if(i!=j) {
@@ -204,22 +213,4 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 		}
 		shortestPath.add(i);
 	}
-	
-	public void printResult(double[][] dist, int[][] next) {
-        System.out.println("pair     dist    path");
-        for (int i = 0; i < next.length; i++) {
-            for (int j = 0; j < next.length; j++) {
-                if (i != j) {
-                    int u = i + 1;
-                    int v = j + 1;
-                    String path = String.format("%d -> %d    %2d     %s", u, v,(int) dist[i][j], u);
-                    do {
-                        u = next[u - 1][v - 1];
-                        path += " -> " + u;
-                    } while (u != v);
-                    System.out.println(path);
-                }
-            }
-        }
-    }
 }

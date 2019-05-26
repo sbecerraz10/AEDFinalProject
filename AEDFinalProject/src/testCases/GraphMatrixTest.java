@@ -71,12 +71,32 @@ class GraphMatrixTest {
 
 	@Test
 	void testAddVertex() {
-		fail("Not yet implemented");
+		setUp1();
+		grafito.addVertex(10);
+		grafito.addVertex(20);
+		grafito.addVertex(9);
+		grafito.addVertex(30);
+		grafito.addVertex(26);
+		
+		assertEquals(grafito.getNumVertex(),5);
+		
+		
 	}
 
 	@Test
 	void testBfs() {
-		fail("Not yet implemented");
+		setUp2();
+		ArrayList<Integer> listica = grafito.bfs(10);
+		assertEquals(listica.get(0).intValue(), 10);
+		assertEquals(listica.get(1).intValue(), 20);
+		assertEquals(listica.get(2).intValue(), 9);
+		assertEquals(listica.get(3).intValue(), 26);
+		//System.out.println(listica.size());
+		assertEquals(listica.get(listica.size()-1).intValue(), 30);
+		
+		// El camino seria
+		// 10 -> 20 -> 9 -> 26 -> 30
+		
 	}
 
 	@Test

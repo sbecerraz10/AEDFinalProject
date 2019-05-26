@@ -216,7 +216,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 		shortestPath.add(i);
 	}
 	
-//	public static void Prim (WGraph g, V a) {
+//	public void Prim (WGraph g, V a) {
 //		for (V v : g.getVertices()) {
 //			//"Initialize" vertices in g
 //			v.visit = false; //Not visisted yet
@@ -225,7 +225,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 //		}
 //		a.dist = 0; //Initial vertex
 //		//Create a new Priority Queue with all the vertices
-//		Q = new MonticuloMinimo<>(g.getVertices());
+//		Q = new ArrayList<>(g.getVertices());
 //		while (!Q.esVacio()) { //While not empty
 //			//Get minimum
 //			Vertex v = Q.elimina();

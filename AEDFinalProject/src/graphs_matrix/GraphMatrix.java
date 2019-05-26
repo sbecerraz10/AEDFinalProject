@@ -20,6 +20,8 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 	private int[][] next;
 	
 	private ArrayList<Integer> shortestPath;
+	
+	private ArrayList<V> Q;
 		
 	public GraphMatrix(int numVertices) {
 		super();
@@ -214,8 +216,8 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 		shortestPath.add(i);
 	}
 	
-//	public static void Prim (WGraph g, Vertex a) {
-//		for (Vertex v : g.getVertices()) {
+//	public static void Prim (WGraph g, V a) {
+//		for (V v : g.getVertices()) {
 //			//"Initialize" vertices in g
 //			v.visit = false; //Not visisted yet
 //			v.parent = Vertex.NIL_VERTEX; //No parent vertex in tree

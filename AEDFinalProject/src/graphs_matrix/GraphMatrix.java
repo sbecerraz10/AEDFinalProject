@@ -213,4 +213,35 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 		}
 		shortestPath.add(i);
 	}
+	
+//	public static void Prim (WGraph g, Vertex a) {
+//		for (Vertex v : g.getVertices()) {
+//			//"Initialize" vertices in g
+//			v.visit = false; //Not visisted yet
+//			v.parent = Vertex.NIL_VERTEX; //No parent vertex in tree
+//			v.dist = Integer.MAX_VALUE; //"Infinite" distance
+//		}
+//		a.dist = 0; //Initial vertex
+//		//Create a new Priority Queue with all the vertices
+//		Q = new MonticuloMinimo<>(g.getVertices());
+//		while (!Q.esVacio()) { //While not empty
+//			//Get minimum
+//			Vertex v = Q.elimina();
+//			//Then, for each neighbor
+//			Lista<Edge> lv = g.getAdjacencies(v); //Adjacencies of v in g
+//			for (Edge e : lv) {
+//				Vertex w = e.v_f; //Neighbor
+//				//If w haven't been visited (is still in Q) and e.cost < w.dist
+//				//then the edge (v,w) is candidate for being in the tree
+//				if (!w.visit && e.cost < w.dist) {
+//					//New parent vertex.
+//					w.parent = v;
+//					w.dist = e.cost;
+//					//Reorder heap.
+//					Q.reordena(w);
+//				}
+//			}
+//			v.visit = true;
+//		}
+//	}
 }

@@ -21,7 +21,7 @@ public class ListPriceController implements Initializable{
 		String [] list = new String[Main.getTrainNetwork().getNetwork().giveAllEdges().size()];
 		
 		for(int i = 0; i < list.length; i++) {
-			list[0] = Main.getTrainNetwork().getNetwork().giveAllEdges().get(i).getOrigin().getValue().getCityname() + "\t" + Main.getTrainNetwork().getNetwork().giveAllEdges().get(i).getDestination().getValue().getCityname() + "\t" + Main.getTrainNetwork().getNetwork().giveAllEdges().get(i).getDistance();
+			list[i] = Main.getTrainNetwork().getNetwork().giveAllEdges().get(i).getOrigin().getValue().getCityname() + "\t" + Main.getTrainNetwork().getNetwork().giveAllEdges().get(i).getDestination().getValue().getCityname() + "\t" + Main.getTrainNetwork().getNetwork().giveAllEdges().get(i).getDistance();
 			prices.getItems().add(list[i]);
 		}
 		

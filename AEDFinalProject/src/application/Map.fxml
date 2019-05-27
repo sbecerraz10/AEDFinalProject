@@ -303,7 +303,7 @@
          <font>
             <Font name="Arial" size="18.0" />
          </font></Button>
-      <Button layoutX="576.0" layoutY="218.0" mnemonicParsing="false" style="-fx-background-color: #9d9b9e;" text="Precios">
+      <Button layoutX="576.0" layoutY="218.0" mnemonicParsing="false" onAction="#price" style="-fx-background-color: #9d9b9e;" text="Precios">
          <font>
             <Font name="Arial" size="18.0" />
          </font>

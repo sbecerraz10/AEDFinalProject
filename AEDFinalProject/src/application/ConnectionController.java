@@ -56,13 +56,16 @@ public class ConnectionController implements Initializable {
 					TrainStation t1 = Main.getTrainNetwork().getListStation().get(indice);
 					TrainStation t2 = Main.getTrainNetwork().getListStation().get(indice1);
 					Main.getTrainNetwork().getMatrixNetwork().addEdge(t1, t2, auxPrice);
+					
 					Nodo<TrainStation> n = new Nodo<TrainStation>(t1);
 					Nodo<TrainStation> n1 = new Nodo<TrainStation>(t2);
-					int p = Main.getTrainNetwork().getNetwork().getNodes().size();
+					
+					Edge<TrainStation> e = new Edge<TrainStation>(n, n1, auxPrice);
+					
+					n.addEdge(e);
+					
 					Main.getTrainNetwork().getNetwork().addNode(n);
 					Main.getTrainNetwork().getNetwork().addNode(n1);
-					Edge<TrainStation> e = new Edge<TrainStation>(n, n1, auxPrice);
-					Main.getTrainNetwork().getNetwork().getNodes().get(p).addEdge(e);
 				
 					toReturn();
 				} 

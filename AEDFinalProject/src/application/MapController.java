@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -137,7 +138,7 @@ public class MapController implements Initializable {
 				
 				for(int j = 0; j < tamanio; j++) {
 				
-					if(matrix[pos][j] != 0) {
+					if(matrix[pos][j] != 0 && matrix[pos][j] != Double.POSITIVE_INFINITY) {
 						
 						TrainStation aux = Main.getTrainNetwork().getMatrixNetwork().getVerticesLookup().get(j);
 						Label l1 = searchLabel(t.getCityname());
@@ -165,4 +166,15 @@ public class MapController implements Initializable {
 		loadLines();
 	}
 
+	@FXML
+	void price(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/application/ListPrice.fxml"));
+		Parent root = (Parent) loader.load();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 }

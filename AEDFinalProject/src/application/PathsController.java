@@ -13,7 +13,7 @@ public class PathsController implements Initializable{
 
     @FXML
     private Button btFloyd;
-
+ 
     @FXML
     private Button btDfs;
 

@@ -13,10 +13,13 @@ public class TrainStationsNetwork {
 
 	private ArrayList<TrainStation> listStation;
 	
+	public static final int NUM_CITYS = 18;
+	
 	public TrainStationsNetwork() {
 		super();
-		network = new Graph<TrainStation>();
-		matrixNetwork = new GraphMatrix<TrainStation>(18);
+		network = new Graph<TrainStation>(NUM_CITYS);
+		matrixNetwork = new GraphMatrix<TrainStation>(NUM_CITYS);
+		
 		listStation = new ArrayList<>();
 		loadStation();
 	}

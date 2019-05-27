@@ -1,7 +1,6 @@
 package graphs;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -15,11 +14,17 @@ public class Graph<V> implements IGraph<V> {
 	
 	private ArrayList<Edge<V>> allEdges;
 	
-    public Graph() {
+	private int[][] next;
+	
+	private ArrayList<Integer> shortestPath;
+	
+    public Graph(int citys) {
 		super();
 		this.nodes = new ArrayList<Nodo<V>>();
 		this.allEdges = new ArrayList<Edge<V>>();
 		this.vertices = nodes.size();
+		this.shortestPath = new ArrayList<Integer>();
+		next = new int[citys][citys];
 	}
 
 	public void addNode(Nodo<V> node) {
@@ -57,74 +62,69 @@ public class Graph<V> implements IGraph<V> {
     	
     }
     
-    public void floydWarshall(int numVertices) {
-    	double[][] weights = listToMatrix();
-        double[][] dist = new double[numVertices][numVertices];
-        for (double[] row : dist)
-            Arrays.fill(row, Double.POSITIVE_INFINITY);
- 
-        for (double[] w : weights)
-            dist[(int) (w[0] - 1)][(int) (w[1] - 1)] = w[2];
- 
-        int[][] next = new int[numVertices][numVertices];
-        for (int i = 0; i < next.length; i++) {
-            for (int j = 0; j < next.length; j++)
-                if (i != j)
-                    next[i][j] = j + 1;
-        }
- 
-        for (int k = 0; k < numVertices; k++)
-            for (int i = 0; i < numVertices; i++)
-                for (int j = 0; j < numVertices; j++)
-                    if (dist[i][k] + dist[k][j] < dist[i][j]) {
-                        dist[i][j] = dist[i][k] + dist[k][j];
-                        next[i][j] = next[i][k];
-                    }
- 
-        for (int i = 0; i < dist.length; i++) {
-			for (int j = 0; j < dist.length; j++) {
-				System.out.print(dist[i][j]);
-			}
-			System.out.println();
-		}
+    public double[][] floydWarshall(double graph[][]) 
+    { 
+    	double dist[][] = new double[graph.length][graph.length]; 
+        int i, j, k; 
+  
         
-        for (int i = 0; i < next.length; i++) {
-			for (int j = 0; j < next.length; j++) {
-				System.out.print(next[i][j] + "  ");
-			}
-			System.out.println();
-		}
+        for (i = 0; i < graph.length; i++) 
+            for (j = 0; j < graph.length; j++) 
+                dist[i][j] = graph[i][j]; 
+  
         
-        printResult(dist, next);
+        for (k = 0; k < graph.length; k++) 
+        { 
+            for (i = 0; i < graph.length; i++) 
+            { 
+                for (j = 0; j < graph.length; j++) 
+                { 
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) 
+                        dist[i][j] = dist[i][k] + dist[k][j]; 
+                } 
+            } 
+        } 
+        
+        printSolution(dist); 
+        return dist;
+        
+    } 
+  
+   public void printSolution(double dist[][]) { 
+        for (int i=0; i<dist.length; ++i) 
+        { 
+            for (int j=0; j<dist.length; ++j) 
+            { 
+                if (dist[i][j]==10000000) 
+                    System.out.print(-1 + "  "); 
+                else
+                    System.out.print(dist[i][j]+"  "); 
+            } 
+            System.out.println(); 
+        } 
     }
-    
-    public void printResult(double[][] dist, int[][] next) {
-        System.out.println("pair     dist    path");
-        for (int i = 0; i < next.length; i++) {
-            for (int j = 0; j < next.length; j++) {
-                if (i != j) {
-                    int u = i + 1;
-                    int v = j + 1;
-                    String path = String.format("%d -> %d    %2d     %s", u, v,(int) dist[i][j], u);
-                    do {
-                        u = next[u - 1][v - 1];
-                        path += " -> " + u;
-                    } while (u != v);
-                    System.out.println(path);
-                }
-            }
-        }
-    }
+	
+	
+	public void printhPath(int i, int j) {
+		if(i!=j) {
+			printhPath(next[i][j], i); 
+		}
+		shortestPath.add(i);
+	}
+	
+	
 
 	public int getVertices() {
 		return vertices;
 	}
 
-	public void prim(Nodo<V> r) {
+	public ArrayList<Edge<V>> prim(Nodo<V> r) {
 		for(Nodo<V> c: this.getNodes()) {
 			c.setDistance(1000000);
 			c.setColor(Nodo.WHITE);
 		}
+		
+		ArrayList<Edge<V>> edge = new ArrayList<>();
 		
 		r.setDistance(0);
 		r.setPredecessor(null);
@@ -144,6 +144,7 @@ public class Graph<V> implements IGraph<V> {
 					if(v.getColor() == Nodo.WHITE && (e.getDistance() < v.getDistance())) {
 						v.setDistance(e.getDistance());
 						pq.offer(v);
+						
 						v.setPredecessor(u);
 					}
 					
@@ -152,50 +153,98 @@ public class Graph<V> implements IGraph<V> {
 				
 			}
 		}
+		return edge;
 	}
 	
-	public void bfs(Nodo<V> node) throws IllegalArgumentException {
-		if(!nodes.contains(node)) {
-			throw new IllegalArgumentException("Node not found");
-		} else {
-			for(Nodo<V> n: getNodes()) {
-				if(!n.equals(node)) {
-					n.setColor(Nodo.WHITE);
-					n.setDistance(1000000000);
-					n.setPredecessor(null);
+	public ArrayList<Nodo<V>> bfs(Nodo<V> start) {
+		ArrayList<Nodo<V>> bf = new ArrayList<Nodo<V>>();
+		Queue<Nodo<V>> queue = new LinkedList<>();
+		boolean[] visited = new boolean[vertices]; 
+
+		queue.add(start);
+		int index = nodes.indexOf(start);
+		visited[index] = true;
+
+		while(!queue.isEmpty()) {
+			Nodo<V> v = queue.poll();
+			bf.add(v);
+	            //System.out.print(v + " ");
+			List<Edge<V>> adjacentVertices = nodes.get(v.getIndex()).getAdjacents();
+			for(Edge<V> a : adjacentVertices) {
+				int adjInd = a.getDestination().getIndex();
+				if(!visited[adjInd]) {
+					queue.add(a.getDestination());
+					visited[adjInd] = true;
 				}
 			}
-			
-			node.setColor(Nodo.GRAY);
-			node.setDistance(0);
-			node.setPredecessor(null);
-			
-			Queue<Nodo<V>> lq = new LinkedList<>();
-			lq.offer(node);
-			
-			while(!lq.isEmpty()) {
-				Nodo<V> au = lq.poll();
-				
-				for(int i = 0; i < nodes.size(); i++) {
-					
-					for(int j = 0; j < nodes.get(i).getAdjacents().size(); j++) {
-						Edge<V> e = nodes.get(i).getAdjacents().get(i);
-						Nodo<V> v = e.getDestination();
-						
-						if(v.getColor() == Nodo.WHITE) {
-							v.setColor(Nodo.GRAY);
-							v.setDistance(au.getDistance()+1);
-							v.setPredecessor(au);
-							lq.offer(v);
-						}
-					}
-					
-				}
-				au.setColor(Nodo.BLACK);
+
+		}
+		return bf;
+
+	}
+	
+	public ArrayList<Nodo<V>> dfs(Nodo<V> start) {
+		ArrayList<Nodo<V>> d = new ArrayList<Nodo<V>>();
+		boolean[] visited = new boolean[vertices];
+		dfs(start, visited,d);
+		return d;
+	}
+
+	private void dfs(Nodo<V> v, boolean[] visited, ArrayList<Nodo<V>> d) {
+		d.add(v);
+
+		int index = nodes.indexOf(v);
+		visited[index] = true;
+
+		List<Edge<V>> adjacentVertices = nodes.get(index).getAdjacents();
+
+		for(Edge<V> a : adjacentVertices) {
+			int aIndex = nodes.indexOf(a.getDestination());
+			if(!visited[aIndex]) {
+				Nodo<V> n = a.getDestination();
+				dfs(n, visited,d);
 			}
 		}
 	}
-    
+
+//	public Graph<V> kruskal() {
+//		Graph<V> g = new Graph<>(vertices);
+//		PriorityQueue<Edge<V>> pq = new PriorityQueue<>(allEdges.size());
+//		
+//		pq.addAll(ordenarEgde());
+//		
+//		Nodo<V> []parent = new Nodo[vertices];
+//		makeSet(parent);
+//		
+//		
+//		
+//		
+//		return g;
+//	}
+//	
+//	private ArrayList<Edge<V>> ordenarEgde() {
+//		ArrayList<Edge<V>> e = giveAllEdges();
+//		for(int i = 0; i < e.size()-1; i++) {
+//			for(int j =1; j < e.size(); j++) {
+//				if(e.get(i).getDistance() >= e.get(j).getDistance()) {
+//					Edge<V> aux = e.get(i);
+//					e.set(i, e.get(j));
+//					e.set(j, aux);
+//					
+//				}
+//			}
+//		}
+//		return e;
+//	}
+//
+//	private void makeSet(Nodo<V> n[]) {
+//		for (int i = 0; i < nodes.size() ; i++) {
+//          n[i] = nodes.get(i);
+//		}
+//	}
+//	
+	
+
 //    public void kruskalMST(){
 //        PriorityQueue<Edge<V>> pq = new PriorityQueue<>(allEdges.size(), CompareTo.comparingInt(o -> o.weight));
 //
@@ -262,15 +311,37 @@ public class Graph<V> implements IGraph<V> {
 //        //make x as parent of y
 //        parent[y_set_parent] = x_set_parent;
 //}
-    
-	/*
-	public ArrayList<Edge<V>> kruskal() {
-		ArrayList<Edge<V>> aux = new ArrayList<>();
-		int a = 0, i = 0;
-		ArrayList<Node<V>> node = (ArrayList<Node<V>>) getNodes();
-		ArrayList<Edge<V>> edge = giveAllEdges();		
-		
-	}
-	*/
-	
+//	
+//	public ArrayList<Edge<V>> kruskal2() {
+//		ArrayList<Edge<V>> edge = new ArrayList<>();
+//		
+//		PriorityQueue<Edge<V>> pq = new PriorityQueue<>(allEdges.size());
+//		pq = sort();
+//		
+//		
+//		
+//		for(int i = 0; i < vertices; i++) {
+//			
+//		}
+//		
+//		return edge;
+//	}
+//	
+//	private PriorityQueue<Edge<V>> sort() {
+//		ArrayList<Edge<V>> e = allEdges;
+//		PriorityQueue<Edge<V>> pq = new PriorityQueue<>();
+//		for(int i = 0; i < e.size()-1; i++) {
+//			for(int j =1; j < e.size(); j++) {
+//				if(e.get(i).getDistance() >= e.get(j).getDistance()) {
+//					Edge<V> aux = e.get(i);
+//					e.set(i, e.get(j));
+//					e.set(j, aux);
+//					
+//				}
+//			}
+//		}
+//		pq.addAll(e);
+//		return pq;
+//	}
+//	
 }

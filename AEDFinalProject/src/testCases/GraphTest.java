@@ -2,6 +2,9 @@ package testCases;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import graphs.Edge;
@@ -14,7 +17,7 @@ class GraphTest {
 	private Graph<Integer> graph;
 
 	private void setUp() {
-		this.graph = new Graph<Integer>();
+		this.graph = new Graph<Integer>(18);
 	}
 	private void setUp1() {
 		setUp();		
@@ -22,8 +25,6 @@ class GraphTest {
 		graph.addNode(new Nodo<Integer>(18) );
 		graph.addNode(new Nodo<Integer>(26) );
 		graph.addNode(new Nodo<Integer>(28) );
-		
-		
 	}
 	
 	private void setUp2() {
@@ -50,55 +51,36 @@ class GraphTest {
 		graph.addNode(aux2);
 	}
 	
-	/*
 	private void setUp3() {
 		setUp();
-		Node<Integer> na = new Node<Integer>(1);
-		Node<Integer> nb = new Node<Integer>(2);
-		Node<Integer> nc = new Node<Integer>(3);
-		Node<Integer> nd = new Node<Integer>(4);
-		Node<Integer> ne = new Node<Integer>(5);
-		Edge<Integer> edge = new Edge<Integer>(na,nb, 1);
-		Edge<Integer> edge1 = new Edge<Integer>(na,nc, 4);
-		Edge<Integer> edge2 = new Edge<Integer>(na,ne, 2);
-		Edge<Integer> edge3 = new Edge<Integer>(nb,na, 1);
-		Edge<Integer> edge4 = new Edge<Integer>(nb,nd, 3);
-		Edge<Integer> e5 = new Edge<Integer>(nb, ne, 3);
-		Edge<Integer> e6 = new Edge<Integer>(nc, na, 4);
-		Edge<Integer> e7 = new Edge<Integer>(nc, nd, 1);
-		Edge<Integer> e8 = new Edge<Integer>(nc, ne, 3);
-		Edge<Integer> e9 = new Edge<Integer>(nd, nb, 3);
-		Edge<Integer> e10 = new Edge<Integer>(nd, nc, 1);
-		Edge<Integer> e11 = new Edge<Integer>(nd, ne, 2);
-		Edge<Integer> e12 = new Edge<Integer>(ne, na, 2);
-		Edge<Integer> e13 = new Edge<Integer>(ne, nb, 3);
-		Edge<Integer> e14 = new Edge<Integer>(ne, nc, 3);
-		Edge<Integer> e15 = new Edge<Integer>(ne, nd, 2);
-		
-		na.addEdge(edge);
-		na.addEdge(edge1);
-		na.addEdge(edge2);
-		nb.addEdge(edge3);
-		nb.addEdge(edge4);
-		nb.addEdge(e5);
-		nc.addEdge(e6);
-		nc.addEdge(e7);
-		nc.addEdge(e8);
-		nd.addEdge(e9);
-		nd.addEdge(e10);
-		nd.addEdge(e11);
-		ne.addEdge(e12);
-		ne.addEdge(e13);
-		ne.addEdge(e14);
-		ne.addEdge(e15);
-		
-		graph.addNode(na);
-		graph.addNode(nb);
-		graph.addNode(nc);
-		graph.addNode(nd);
-	}
-	*/
 	
+		Nodo<Integer> x1 = new Nodo<Integer>(10);
+		Nodo<Integer> x2 = new Nodo<Integer>(20);
+		Nodo<Integer> x3 = new Nodo<Integer>(30);
+		Nodo<Integer> x4 = new Nodo<Integer>(9);
+		Nodo<Integer> x5 = new Nodo<Integer>(26);
+		
+		Edge<Integer> e1 = new Edge<>(x1, x2, 10);
+		Edge<Integer> e2 = new Edge<>(x1, x4, 12);
+		Edge<Integer> e3 = new Edge<>(x2, x5, 7);
+		Edge<Integer> e4 = new Edge<>(x5, x3, 5);
+		Edge<Integer> e5 = new Edge<>(x3, x2, 8);
+		Edge<Integer> e6 = new Edge<>(x4, x5, 1);
+		
+		x1.addEdge(e1);
+		x1.addEdge(e2);
+		x2.addEdge(e3);
+		x3.addEdge(e5);
+		x4.addEdge(e6);
+		x5.addEdge(e4);
+		
+		graph.addNode(x1);
+		graph.addNode(x2);
+		graph.addNode(x3);
+		graph.addNode(x4);
+		graph.addNode(x5);
+		
+	}
 	
 	@Test
 	void testAddNode() {
@@ -133,12 +115,71 @@ class GraphTest {
 //		28| 1  6  0  0
 	}
 	
-	/*
+	
 	@Test
 	void testPrim() {
-		setUp3();
+		setUp2();
 		graph.prim(graph.getNodes().get(0));
+		
 	}
-	*/
+	
+	@Test
+	void testFloydWarshall() {
+		setUp();
+		
+		double[][] matrix = {{0,Double.POSITIVE_INFINITY,17,Double.POSITIVE_INFINITY,19},{Double.POSITIVE_INFINITY,0,6,10,Double.POSITIVE_INFINITY}
+		,{17,6,0,Double.POSITIVE_INFINITY,8},{Double.POSITIVE_INFINITY,10,Double.POSITIVE_INFINITY,0,13}
+		,{19,Double.POSITIVE_INFINITY,8,13,0}};
+		
+		double [][] sol = graph.floydWarshall(matrix);
+		
+		
+		assertEquals(sol[0][1],23);
+		assertEquals(sol[0][3],32);
+		assertEquals(sol[2][3],16);
+		assertEquals(sol[3][2],16);		
+	}
+	
+	@Test
+	void testDfs() {
+		setUp3();
+
+		assertEquals(5, graph.getNodes().size());
+		
+		ArrayList<Nodo<Integer>> listica = graph.dfs(graph.getNodes().get(0));
+		
+		Nodo<Integer> n = new Nodo<Integer>(10);
+		Nodo<Integer> n1 = new Nodo<Integer>(9);
+		Nodo<Integer> n2 = new Nodo<Integer>(20);
+		assertEquals(n.getValue(), listica.get(0).getValue());
+		assertEquals(listica.get(1).getValue(), n2.getValue());
+		assertEquals(listica.get(listica.size()-1).getValue(), n1.getValue());
+		
+		// El camino seria
+		// 10 -> 20 -> 26 -> 30 -> 9
+	}
+	
+	@Test
+	void testBfs() {
+		setUp3();
+		ArrayList<Nodo<Integer>> listica = graph.bfs(graph.getNodes().get(0));
+		
+		Nodo<Integer> n = new Nodo<Integer>(10);
+		Nodo<Integer> n3 = new Nodo<Integer>(26);
+		Nodo<Integer> n1 = new Nodo<Integer>(9);
+		Nodo<Integer> n4 = new Nodo<Integer>(30);
+		Nodo<Integer> n2 = new Nodo<Integer>(20);
+		assertEquals(listica.get(0).getValue(), n.getValue());
+		assertEquals(listica.get(1).getValue(), n2.getValue());
+		assertEquals(listica.get(2).getValue(), n1.getValue());
+		assertEquals(listica.get(3).getValue(), n3.getValue());
+		assertEquals(listica.get(4).getValue(), n4.getValue());
+		
+		// El camino seria
+		// 10 -> 20 -> 9 -> 26 -> 30
+		
+	}
+	
+	
 
 }

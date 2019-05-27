@@ -13,14 +13,14 @@ public interface IGraph<V> {
 	
 	public double [][] listToMatrix();
 	
-	public void floydWarshall(int numVertices);
+	public double[][] floydWarshall(double matrix [][]);
 	
-	public void printResult(double[][] dist, int[][] next);
+	public void printhPath(int i, int j);
 	
 	public int getVertices();
 	
-	public void prim(Nodo<V> r);
+	public ArrayList<Edge<V>> prim(Nodo<V> r);
 	
-	public void bfs(Nodo<V> node) throws IllegalArgumentException;
+	public ArrayList<Nodo<V>> bfs(Nodo<V> node) throws IllegalArgumentException;
 	
 }

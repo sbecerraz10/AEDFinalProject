@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -22,11 +23,14 @@ public class PathsController implements Initializable{
 
     @FXML
     void dfs(ActionEvent event) {
-    	
+    	info.clear();
+    	ArrayList df = Main.getTrainNetwork().getMatrixNetwork().dfs(Main.getTrainNetwork().getMatrixNetwork().getVerticesLookup().get(0));
+    	info.setText(Main.getTrainNetwork().getMatrixNetwork().textDfs(df));
     }
 
     @FXML
     void floyd(ActionEvent event) {
+    	info.clear();
     	double [][] graph = Main.getTrainNetwork().getMatrixNetwork().getAdjacent();
     	double [][] dist = Main.getTrainNetwork().getMatrixNetwork().floydWarshall(graph);
     	info.setText(Main.getTrainNetwork().floydToText(dist));

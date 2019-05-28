@@ -1,6 +1,7 @@
 package graphs_matrix;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IGraphMatrix<V> {
 
@@ -12,7 +13,7 @@ public interface IGraphMatrix<V> {
 	
 	public ArrayList<V> bfs(V start);
 	
-	public  ArrayList<V> dfs(V start);
+	public  List<V> dfs(V start);
 	
 	public double[][] floydWarshall(double matrix [][]);
 	

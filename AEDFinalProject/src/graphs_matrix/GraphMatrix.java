@@ -138,7 +138,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
     }
 
     private void dfs(V v, boolean[] visited, ArrayList<V> d) {
-        //System.out.print(v + " ");
+        //System.out.print(v. + " ");
     	d.add(v);
         int index = vertices.get(v);
         visited[index] = true;
@@ -150,6 +150,14 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
                 dfs(a, visited,d);
             }
         }
+    }
+    
+    public String textDfs(ArrayList<V> path) {
+    	String inf = "";
+    	for (int i = 0; i < path.size(); i++) {
+			inf += path.get(i) + " -> ";
+		}
+    	return inf;
     }
 
     private List<V> getAdjacentVertices(V v) {

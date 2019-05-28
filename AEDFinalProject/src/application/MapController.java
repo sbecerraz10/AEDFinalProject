@@ -161,6 +161,17 @@ public class MapController implements Initializable {
 		return null;
 	}
 	
+	@FXML
+    void iniziate(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/application/Paths.fxml"));
+		Parent root = (Parent) loader.load();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loadLines();

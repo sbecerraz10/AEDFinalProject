@@ -91,6 +91,23 @@ public class TrainStationsNetwork {
 		
 	}
 	
+	
+	public String floydToText(double[][] dist) {
+		String str = " ";
+		for (int i=0; i<dist.length; ++i) 
+        { 
+            for (int j=0; j<dist.length; ++j) 
+            { 
+                if (dist[i][j]==10000000) 
+                    str += (-1 + "  "); 
+                else
+                    str += (dist[i][j]+"  "); 
+            } 
+            str += "\n"; 
+        }
+		return str; 
+	}
+	
 
 	public Graph<TrainStation> getNetwork() {
 		return network;
@@ -115,5 +132,14 @@ public class TrainStationsNetwork {
 	public void setListStation(ArrayList<TrainStation> listStation) {
 		this.listStation = listStation;
 	}
+
+	public GraphMatrix<TrainStation> getMatrixSubNetwork() {
+		return matrixSubNetwork;
+	}
+
+	public void setMatrixSubNetwork(GraphMatrix<TrainStation> matrixSubNetwork) {
+		this.matrixSubNetwork = matrixSubNetwork;
+	}
+	
 	
 }

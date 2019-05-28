@@ -22,12 +22,15 @@ public class PathsController implements Initializable{
 
     @FXML
     void dfs(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void floyd(ActionEvent event) {
-
+    	double [][] graph = Main.getTrainNetwork().getMatrixNetwork().getAdjacent();
+    	double [][] dist = Main.getTrainNetwork().getMatrixNetwork().floydWarshall(graph);
+    	info.setText(Main.getTrainNetwork().floydToText(dist));
+    	
     }
 
 	@Override

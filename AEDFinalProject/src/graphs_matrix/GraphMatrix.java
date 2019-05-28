@@ -151,14 +151,6 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
             }
         }
     }
-    
-    public String textDfs(ArrayList<V> path) {
-    	String inf = "";
-    	for (int i = 0; i < path.size(); i++) {
-			inf += path.get(i) + " -> ";
-		}
-    	return inf;
-    }
 
     private List<V> getAdjacentVertices(V v) {
         int index = vertices.get(v);

@@ -98,7 +98,7 @@ public class TrainStationsNetwork {
         { 
             for (int j=0; j<dist.length; ++j) 
             { 
-                if (dist[i][j]==10000000) 
+                if (dist[i][j] == Double.MAX_VALUE) 
                     str += (-1 + "  "); 
                 else
                     str += (dist[i][j]+"  "); 

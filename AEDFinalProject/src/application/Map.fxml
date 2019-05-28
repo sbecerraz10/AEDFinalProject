@@ -294,16 +294,21 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="558.0" layoutY="73.0" mnemonicParsing="false" onAction="#iniziate" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #9d9b9e;" text="Iniciar">
+      <Button layoutX="559.0" layoutY="214.0" mnemonicParsing="false" onAction="#iniziate" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #9d9b9e;" text="Iniciar">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="545.0" layoutY="145.0" mnemonicParsing="false" onAction="#newConnection" style="-fx-background-color: #9d9b9e;" text="Crear conexion">
+      <Button layoutX="546.0" layoutY="322.0" mnemonicParsing="false" onAction="#newConnection" style="-fx-background-color: #9d9b9e;" text="Crear conexion">
          <font>
             <Font name="Arial" size="18.0" />
          </font></Button>
-      <Button layoutX="576.0" layoutY="218.0" mnemonicParsing="false" onAction="#price" style="-fx-background-color: #9d9b9e;" text="Precios">
+      <Button layoutX="577.0" layoutY="420.0" mnemonicParsing="false" onAction="#price" style="-fx-background-color: #9d9b9e;" text="Precios">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="563.0" layoutY="539.0" mnemonicParsing="false" onAction="#dfs" style="-fx-background-color: #9d9b9e;" text="Recorridos">
          <font>
             <Font name="Arial" size="18.0" />
          </font>

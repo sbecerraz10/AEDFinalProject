@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="526.0" style="-fx-background-color: #243643;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FloydController">
+   <children>
+      <ImageView fitHeight="118.0" fitWidth="140.0" layoutX="204.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../additional/tren.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="info" layoutX="47.0" layoutY="139.0" opacity="0.83" prefHeight="200.0" prefWidth="421.0" />
+   </children>
+</AnchorPane>

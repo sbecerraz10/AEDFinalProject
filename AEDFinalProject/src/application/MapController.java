@@ -165,7 +165,7 @@ public class MapController implements Initializable {
     void iniziate(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/application/Paths.fxml"));
+		loader.setLocation(getClass().getResource("/application/Floyd.fxml"));
 		Parent root = (Parent) loader.load();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -182,6 +182,17 @@ public class MapController implements Initializable {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/application/ListPrice.fxml"));
+		Parent root = (Parent) loader.load();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	@FXML
+	void dfs(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/application/Dfs.fxml"));
 		Parent root = (Parent) loader.load();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);

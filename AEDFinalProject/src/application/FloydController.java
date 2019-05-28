@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import model.TrainStation;
 
-public class PathsController implements Initializable{
+public class FloydController implements Initializable{
 
 	@FXML
 	private Button btFloyd;
@@ -42,19 +42,14 @@ public class PathsController implements Initializable{
 		}
 	}
 
-	@FXML
-	void floyd(ActionEvent event) {
-		info.clear();
-		double [][] graph = Main.getTrainNetwork().getMatrixNetwork().getAdjacent();
-		double [][] dist = Main.getTrainNetwork().getMatrixNetwork().floydWarshall(graph);
-		info.setText(Main.getTrainNetwork().floydToText(dist));
-
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-	
+		info.clear();
+		double [][] graph = Main.getTrainNetwork().getMatrixNetwork().getAdjacent();
+		double [][] dist = Main.getTrainNetwork().getMatrixNetwork().floydWarshall(graph);
+		info.setText(Main.getTrainNetwork().floydToText(dist));
 	}
 
 }

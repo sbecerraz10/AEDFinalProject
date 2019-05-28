@@ -26,7 +26,7 @@ public class TrainStationsNetwork {
 		loadStation();
 	}
 	
-	private void loadStation() {
+	public void loadStation() {
 		listStation.add(new TrainStation("Medellin",0));
 		listStation.add(new TrainStation("SantaMarta",1));
 		listStation.add(new TrainStation("Cali",2));

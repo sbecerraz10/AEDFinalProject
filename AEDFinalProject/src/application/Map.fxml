@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="742.0" style="-fx-background-color: #243643;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MapController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="756.0" style="-fx-background-color: #243643;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MapController">
    <children>
       <AnchorPane fx:id="pane" layoutX="-1.0" layoutY="-3.0" opacity="0.73" prefHeight="577.0" prefWidth="434.0" style="-fx-background-color: white;">
          <children>
@@ -294,21 +294,21 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="559.0" layoutY="214.0" mnemonicParsing="false" onAction="#iniziate" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #9d9b9e;" text="Iniciar">
+      <Button layoutX="492.0" layoutY="255.0" mnemonicParsing="false" onAction="#iniziate" prefHeight="34.0" prefWidth="258.0" style="-fx-background-color: #9d9b9e;" text="Minimum road between cities">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="546.0" layoutY="322.0" mnemonicParsing="false" onAction="#newConnection" style="-fx-background-color: #9d9b9e;" text="Crear conexion">
+      <Button layoutX="492.0" layoutY="307.0" mnemonicParsing="false" onAction="#newConnection" prefHeight="34.0" prefWidth="258.0" style="-fx-background-color: #9d9b9e;" text="New conexion">
          <font>
             <Font name="Arial" size="18.0" />
          </font></Button>
-      <Button layoutX="577.0" layoutY="420.0" mnemonicParsing="false" onAction="#price" style="-fx-background-color: #9d9b9e;" text="Precios">
+      <Button layoutX="492.0" layoutY="360.0" mnemonicParsing="false" onAction="#price" prefHeight="34.0" prefWidth="258.0" style="-fx-background-color: #9d9b9e;" text="Prices">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="563.0" layoutY="539.0" mnemonicParsing="false" onAction="#dfs" style="-fx-background-color: #9d9b9e;" text="Recorridos">
+      <Button layoutX="492.0" layoutY="411.0" mnemonicParsing="false" onAction="#dfs" prefHeight="34.0" prefWidth="258.0" style="-fx-background-color: #9d9b9e;" text="DFS Paths">
          <font>
             <Font name="Arial" size="18.0" />
          </font>

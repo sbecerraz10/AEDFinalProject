@@ -1,1 +1,3 @@
-Este programa...
+Este programa tiene la opcion de simular una aplicacion para el uso de trenes en Colombia. Este plan ha empezado a funcionar
+Nos han contratado para realizarlo para facilitar el uso de los usuarios, como llegar de un punto hasta otro, incluo
+crear una nueva conexion de trenes

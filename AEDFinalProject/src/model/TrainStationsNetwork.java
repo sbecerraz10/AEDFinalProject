@@ -149,8 +149,13 @@ public class TrainStationsNetwork {
 		String str = "1.INITIAL CITY, 2.TARGET CITY,           3.PATH" + "\n";
 		for (int i = 0; i < dist.length; i++) {
 			for (int j = 0; j < dist.length; j++) {
-				if(i!=j)str += " 1."+listStation.get(i).getCityname() +"," + " 2."+listStation.get(j).getCityname() +",        " +" 3."+ pathUV(i, j, next);
-				str += "\n";
+				if(dist[i][j] != Double.POSITIVE_INFINITY) {
+					if(i!=j) {
+						str += " 1."+listStation.get(i).getCityname() +"," + " 2."+listStation.get(j).getCityname() +",        " +" 3."+ pathUV(i, j, next);
+						str += "\n";
+					}
+					
+				}
 			}
 		}
 		return str;

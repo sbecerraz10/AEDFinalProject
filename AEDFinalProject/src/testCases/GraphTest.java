@@ -84,7 +84,6 @@ class GraphTest {
 	
 	@Test
 	void testAddNode() {
-		setUp();
 		setUp1();
 		if(graph.getVertices() == 4) {
 			assert(true);

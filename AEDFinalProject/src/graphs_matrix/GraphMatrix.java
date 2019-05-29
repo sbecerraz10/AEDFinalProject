@@ -40,6 +40,7 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 					adjacent[i][j] = Double.POSITIVE_INFINITY;
 					adjacent[j][i] = Double.POSITIVE_INFINITY;
 				} 
+				next[i][j] = -1;
 			}
 		}
 		
@@ -171,10 +172,16 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
         int i, j, k; 
   
         
-        for (i = 0; i < graph.length; i++) 
-            for (j = 0; j < graph.length; j++) 
+        for (i = 0; i < graph.length; i++) { 
+            for (j = 0; j < graph.length; j++) {
                 dist[i][j] = graph[i][j]; 
-  
+        		next[i][j] = j;
+            }	
+        }
+        
+        for (i = 0; i < graph.length; i++) { 
+        		next[i][i] = i;
+        }
         
         for (k = 0; k < graph.length; k++) 
         { 
@@ -182,8 +189,10 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
             { 
                 for (j = 0; j < graph.length; j++) 
                 { 
-                    if (dist[i][k] + dist[k][j] < dist[i][j]) 
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) { 
                         dist[i][j] = dist[i][k] + dist[k][j]; 
+                    	next[i][j] = next[i][k];
+                    }	
                 } 
             } 
         } 
@@ -214,6 +223,14 @@ public class GraphMatrix<V> implements IGraphMatrix<V> {
 			printhPath(next[i][j], i); 
 		}
 		shortestPath.add(i);
+	}
+
+	public int[][] getNext() {
+		return next;
+	}
+
+	public void setNext(int[][] next) {
+		this.next = next;
 	}
 	
 //	public void Prim (WGraph g, V a) {
